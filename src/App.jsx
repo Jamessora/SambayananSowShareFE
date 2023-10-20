@@ -52,6 +52,7 @@ function App() {
       <Routes>
     
     {/* User Views */}
+    <Route path="/" element={<LoginComponent/>} />
     <Route path="/signup" element={<SignupComponent/>} />
     <Route path="/login" element={<LoginComponent/>} />
     <Route path="/email-sent" element={<EmailSent/>} />
