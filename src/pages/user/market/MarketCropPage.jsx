@@ -46,7 +46,7 @@ const MarketCropPage = () => {
   const initializeTransaction = async (cropId) => {
     try {
       
-      const response = await fetch(`/api/users/${userId}/transactions/`, {
+      const response = await fetch(`https://sambayanansowshare.onrender.com/users/${userId}/transactions/`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -96,7 +96,7 @@ const MarketCropPage = () => {
         quantity: quantity
       };
       
-      const response = await fetch(`/api/users/${userId}/transactions/${transactionId}/transaction_crops`, {
+      const response = await fetch(`https://sambayanansowshare.onrender.com/users/${userId}/transactions/${transactionId}/transaction_crops`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -154,7 +154,7 @@ const MarketCropPage = () => {
     // This function fetches all crops
     const fetchAllCrops = async () => {
       try {
-        const response = await fetch(`/api/market`);
+        const response = await fetch(`https://sambayanansowshare.onrender.com/market`);
         const data = await response.json();
     if (response.ok) {
       console.log("Fetching all crops aside from the useeffect",data);
@@ -170,7 +170,7 @@ const MarketCropPage = () => {
 
   const fetchTransactionCrops = async () => {
     try {
-      const response = await fetch (`/api/users/${userId}/transaction-crops`, {
+      const response = await fetch (`https://sambayanansowshare.onrender.com/users/${userId}/transaction-crops`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
