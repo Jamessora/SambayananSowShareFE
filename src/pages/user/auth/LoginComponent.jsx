@@ -123,8 +123,12 @@ const LoginComponent = () => {
         body: JSON.stringify({ id_token: idToken }),
       });
 
-      const data = await response.json();
-      console.log("Received response from backend:", data);
+      try {
+        const data = await response.json();
+        console.log("Received response from backend:", data);
+      } catch (error) {
+        console.log("Error parsing JSON:", error);
+      }
 
       if (data.success) {
         console.log("Verification successful: user create success");
@@ -133,6 +137,7 @@ const LoginComponent = () => {
         // Store session/token and navigate to protected route
       } else {
         console.log("Authentication failed:", data.error);
+        console.log("Authentication failed:", data);
       }
     } catch (error) {
       console.log('An error occurred:', error);
@@ -169,19 +174,14 @@ const LoginComponent = () => {
       <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <GoogleLogin
           onSuccess={onSuccess}
-          onError={() => {
+          onError={(error) => {
             console.log('Login Failed', error);
           }}
         />
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           <LockOutlinedIcon />
         </Avatar>
-        <GoogleLogin
-          onSuccess={onSuccess}
-          onError={() => {
-            console.log('Login Failed', error);
-          }}
-        />
+        
         <Typography component="h1" variant="h5">
           Login
         </Typography>
