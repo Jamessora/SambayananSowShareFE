@@ -122,22 +122,17 @@ const LoginComponent = () => {
         },
         body: JSON.stringify({ id_token: idToken }),
       });
-
-      try {
-        const data = await response.json();
-        console.log("Received response from backend:", data);
-      } catch (error) {
-        console.log("Error parsing JSON:", error);
-      }
+      console.log("Raw Response:", response);
+      const data = await response.json();
+      console.log("Received response from backend:", data);
 
       if (data.success) {
         console.log("Verification successful: user create success");
         localStorage.setItem('jwt', data.jwt);
         navigate('/dashboard');
-        // Store session/token and navigate to protected route
+        // Store session/token and nav thaigate to protected route
       } else {
         console.log("Authentication failed:", data.error);
-        console.log("Authentication failed:", data);
       }
     } catch (error) {
       console.log('An error occurred:', error);
@@ -154,7 +149,7 @@ const LoginComponent = () => {
         },
         body: JSON.stringify({ email, password }),
       });
-
+      console.log("Raw Response:", response);
       const data = await response.json();
       if (data.success) {
         // Store JWT token to browser storage
