@@ -6,14 +6,6 @@ import jwt_decode from "jwt-decode";
 export const token = localStorage.getItem('jwt');
 
 
-const getApiBaseUrl = () => {
-  if (import.meta.env.DEV) {
-    return import.meta.env.VITE_API_BASE_URL_LOCAL;
-  }
-  return import.meta.env.VITE_API_BASE_URL;
-};
-
-export const apiBaseURL = getApiBaseUrl();
 
 
 

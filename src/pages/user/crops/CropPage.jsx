@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {apiBaseURL, token, getUserIdFromToken } from '../../../services/user/authService';
+import {token, getUserIdFromToken } from '../../../services/user/authService';
 import { Container, CssBaseline, Typography, TextField, Button, List, ListItem, ListItemText, ListItemSecondaryAction, IconButton  } from '@mui/material';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -92,7 +92,7 @@ const CropsPage = () => {
     }, [userId]);
   
     const fetchCrops = async () => {
-        const response = await fetch(`${apiBaseURL}/users/${userId}/crops`, {
+        const response = await fetch(`/api/users/${userId}/crops`, {
             headers: {
               'Authorization': `Bearer ${token}`
             }
@@ -104,7 +104,7 @@ const CropsPage = () => {
 
     //Add New Crops
     const addCrop = async () => {
-        const response = await fetch(`${apiBaseURL}/users/${userId}/crops`, {
+        const response = await fetch(`/api/users/${userId}/crops`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -134,7 +134,7 @@ const CropsPage = () => {
             updatedEditingCrop.crop_expiry_date = date.toISOString();
         }
 
-        const response = await fetch(`${apiBaseURL}/users/${userId}/crops/${editingCrop.id}`, {
+        const response = await fetch(`/api/users/${userId}/crops/${editingCrop.id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -161,7 +161,7 @@ const CropsPage = () => {
       
     //Delete a crop
     const deleteCrop = async (cropId) => {
-        const response = await fetch(`${apiBaseURL}/users/${userId}/crops/${cropId}`, {
+        const response = await fetch(`/api/users/${userId}/crops/${cropId}`, {
           method: 'DELETE',
           headers: {
             

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import {apiBaseURL, token, getUserIdFromToken } from '../../../services/user/authService';
+import { token, getUserIdFromToken } from '../../../services/user/authService';
 
 const OrderSuccessPage = () => {
   const [transaction, setTransaction] = useState(null);
@@ -27,7 +27,7 @@ const OrderSuccessPage = () => {
     
     const fetchTransactionDetails = async () => {
       // Fetch transaction details based on transactionId and set them in state
-      const response = await fetch(`${apiBaseURL}/users/${userId}/transactions/${transactionId}`, {
+      const response = await fetch(`/api/users/${userId}/transactions/${transactionId}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },

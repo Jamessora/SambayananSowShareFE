@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { apiBaseURL} from '../../services/user/authService';
 
 const AdminUsersPage = () => {
   const [users, setUsers] = useState([]);
@@ -8,7 +7,7 @@ const AdminUsersPage = () => {
 
   const handleDelete = async (userId) => {
     try {
-      const response = await fetch(`${apiBaseURL}/admin/users/${userId}`, {
+      const response = await fetch(`/api/admin/users/${userId}`, {
         method: 'DELETE'
       });
       if (response.ok) {
@@ -32,7 +31,7 @@ const AdminUsersPage = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch(`${apiBaseURL}/admin/users`);
+        const response = await fetch('/api/admin/users');
         const data = await response.json();
         if (response.ok) {
           setUsers(data);

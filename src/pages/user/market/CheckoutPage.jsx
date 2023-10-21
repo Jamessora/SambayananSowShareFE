@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { apiBaseURL, token, getUserIdFromToken } from '../../../services/user/authService';
+import { token, getUserIdFromToken } from '../../../services/user/authService';
 import { useNavigate } from 'react-router-dom';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Typography } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -28,7 +28,7 @@ const CheckoutPage = () => {
         try {
           const payload = { quantity: newQuantity };
       
-          const response = await fetch(`${apiBaseURL}/users/${userId}/transactions/${transactionId}/transaction_crops/${transactionCropId}`, {
+          const response = await fetch(`/api/users/${userId}/transactions/${transactionId}/transaction_crops/${transactionCropId}`, {
             method: 'PUT',
             headers: {
               'Authorization': `Bearer ${token}`,
@@ -72,7 +72,7 @@ const CheckoutPage = () => {
       const removeFromTransaction = async (transactionCropId) => {
         try {
                 
-          const response = await fetch(`${apiBaseURL}/users/${userId}/transactions/${transactionId}/transaction_crops/${transactionCropId}`, {
+          const response = await fetch(`/api/users/${userId}/transactions/${transactionId}/transaction_crops/${transactionCropId}`, {
             method: 'DELETE',
             headers: {
               'Authorization': `Bearer ${token}`
@@ -96,7 +96,7 @@ const CheckoutPage = () => {
       
   const fetchTransactionCrops = async () => {
     try {
-      const response = await fetch (`${apiBaseURL}/users/${userId}/transaction-crops`, {
+      const response = await fetch (`/api/users/${userId}/transaction-crops`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -118,7 +118,7 @@ const CheckoutPage = () => {
         setIsLoading(true);  
         const payload = { status: "For Seller Confirmation" };
 
-          const response = await fetch(`${apiBaseURL}/users/${userId}/transactions/${transactionId}`, {
+          const response = await fetch(`/api/users/${userId}/transactions/${transactionId}`, {
             method: 'PUT',
             headers: {
               'Authorization': `Bearer ${token}`,

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { apiBaseURL} from '../../services/user/authService';
 
 
 const AdminCreateUser = () => {
@@ -28,7 +27,7 @@ const [newUser, setNewUser] = useState({
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("New user params:",newUser);
-    const response = await fetch(`${apiBaseURL}/admin/users`, {
+    const response = await fetch('/api/admin/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

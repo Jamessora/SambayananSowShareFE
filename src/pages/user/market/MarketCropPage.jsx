@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { apiBaseURL, token, getUserIdFromToken } from '../../../services/user/authService';
+import { token, getUserIdFromToken } from '../../../services/user/authService';
 import { useNavigate } from 'react-router-dom';
 import { IconButton, Card,TableContainer, Table, TableBody, TableCell, TableHead, TableRow ,CardContent, CardActions, Button, Dialog, DialogTitle, DialogContent, Select, MenuItem, Paper, Stack, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -7,7 +7,6 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import useSnackbar from '../../../services/snackbarService';
-
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -47,7 +46,7 @@ const MarketCropPage = () => {
   const initializeTransaction = async (cropId) => {
     try {
       
-      const response = await fetch(`${apiBaseURL}/users/${userId}/transactions/`, {
+      const response = await fetch(`/api/users/${userId}/transactions/`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -97,7 +96,7 @@ const MarketCropPage = () => {
         quantity: quantity
       };
       
-      const response = await fetch(`${apiBaseURL}/users/${userId}/transactions/${transactionId}/transaction_crops`, {
+      const response = await fetch(`/api/users/${userId}/transactions/${transactionId}/transaction_crops`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -155,7 +154,7 @@ const MarketCropPage = () => {
     // This function fetches all crops
     const fetchAllCrops = async () => {
       try {
-        const response = await fetch(`${apiBaseURL}/market`);
+        const response = await fetch(`/api/market`);
         const data = await response.json();
     if (response.ok) {
       console.log("Fetching all crops aside from the useeffect",data);
@@ -171,7 +170,7 @@ const MarketCropPage = () => {
 
   const fetchTransactionCrops = async () => {
     try {
-      const response = await fetch (`${apiBaseURL}/users/${userId}/transaction-crops`, {
+      const response = await fetch (`/api/users/${userId}/transaction-crops`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },

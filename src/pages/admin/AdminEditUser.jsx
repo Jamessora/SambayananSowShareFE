@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { apiBaseURL} from '../../services/user/authService';
-
 
 const AdminEditUser = () => {
   const [userData, setUserData] = useState(null);
@@ -11,7 +9,7 @@ const AdminEditUser = () => {
   useEffect(() => {
     console.log("User Id:",userId)
     const fetchUserData = async () => {
-      const response = await fetch(`${apiBaseURL}/admin/users/${userId}`);
+      const response = await fetch(`/api/admin/users/${userId}`);
          
       const data = await response.json();
       if (response.ok) {
@@ -30,7 +28,7 @@ const AdminEditUser = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(`${apiBaseURL}/admin/users/${userId}`, {
+    const response = await fetch(`/api/admin/users/${userId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

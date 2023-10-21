@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { apiBaseURL} from '../../services/user/authService';
-
-
 
 const AdminKYCPage = () => {
   const [pendingKYC, setPendingKYC] = useState([]);
@@ -23,7 +20,7 @@ const AdminKYCPage = () => {
     console.log("idPhoto:", pendingKYC[0].idPhoto);
   }
   const fetchPendingKYC = async () => {
-    const response = await fetch(`${apiBaseURL}/admin/kyc`);
+    const response = await fetch(`/api/admin/kyc`);
 
     if (!response.ok) {
       throw new Error(`Error fetching KYC data: ${response.statusText}`);
@@ -61,7 +58,7 @@ const AdminKYCPage = () => {
   };
 
   const approveKYC = async (userId) => {
-    const response = await fetch(`${apiBaseURL}/admin/kyc/${userId}/approve`, {
+    const response = await fetch(`/api/admin/kyc/${userId}/approve`, {
       method: 'POST',
     });
     const data = await response.json();
@@ -69,7 +66,7 @@ const AdminKYCPage = () => {
   };
 
   const rejectKYC = async (userId) => {
-    const response = await fetch(`${apiBaseURL}/admin/kyc/${userId}/reject`, {
+    const response = await fetch(`/api/admin/kyc/${userId}/reject`, {
       method: 'POST',
     });
     const data = await response.json();

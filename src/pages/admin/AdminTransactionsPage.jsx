@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { apiBaseURL} from '../../services/user/authService';
 
 const AdminTransactionsPage = () => {
   const [transactions, setTransactions] = useState([]);
@@ -10,7 +9,7 @@ const AdminTransactionsPage = () => {
   
   const handleDeleteTransaction = async (transactionId) => {
     try {
-      const response = await fetch(`${apiBaseURL}/admin/transactions/${transactionId}`, {
+      const response = await fetch(`/api/admin/transactions/${transactionId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${YOUR_ADMIN_TOKEN_HERE}`
@@ -30,7 +29,7 @@ const AdminTransactionsPage = () => {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await fetch(`${apiBaseURL}/admin/transactions`, {
+        const response = await fetch('/api/admin/transactions', {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${YOUR_ADMIN_TOKEN_HERE}`

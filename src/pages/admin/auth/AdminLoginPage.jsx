@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import { GoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
-import { apiBaseURL} from '../../../services/user/authService';
 
 const AdminLoginPage = () => {
     const navigate =  useNavigate();
@@ -11,7 +10,7 @@ const AdminLoginPage = () => {
       const handleEmailPasswordLogin = async (e) => {
         e.preventDefault();
         try {
-          const response = await fetch(`${apiBaseURL}/admins/sign_in`, {
+          const response = await fetch(`/api/admins/sign_in`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
