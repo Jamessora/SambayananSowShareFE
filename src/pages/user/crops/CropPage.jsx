@@ -92,7 +92,7 @@ const CropsPage = () => {
     }, [userId]);
   
     const fetchCrops = async () => {
-        const response = await fetch(`/api/users/${userId}/crops`, {
+        const response = await fetch(`${apiBaseURL}/users/${userId}/crops`, {
             headers: {
               'Authorization': `Bearer ${token}`
             }
@@ -104,7 +104,7 @@ const CropsPage = () => {
 
     //Add New Crops
     const addCrop = async () => {
-        const response = await fetch(`/api/users/${userId}/crops`, {
+        const response = await fetch(`${apiBaseURL}/users/${userId}/crops`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -134,7 +134,7 @@ const CropsPage = () => {
             updatedEditingCrop.crop_expiry_date = date.toISOString();
         }
 
-        const response = await fetch(`/api/users/${userId}/crops/${editingCrop.id}`, {
+        const response = await fetch(`${apiBaseURL}/users/${userId}/crops/${editingCrop.id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -161,7 +161,7 @@ const CropsPage = () => {
       
     //Delete a crop
     const deleteCrop = async (cropId) => {
-        const response = await fetch(`/api/users/${userId}/crops/${cropId}`, {
+        const response = await fetch(`${apiBaseURL}/users/${userId}/crops/${cropId}`, {
           method: 'DELETE',
           headers: {
             

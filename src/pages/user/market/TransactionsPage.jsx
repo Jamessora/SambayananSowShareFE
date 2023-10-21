@@ -111,7 +111,7 @@ const TransactionsPage = () => {
   const fetchTransactions = async (userId, role) => {
     
     try {
-      const response = await fetch(`/api/users/${userId}/transactions?role=${role}`, {
+      const response = await fetch(`${apiBaseURL}/users/${userId}/transactions?role=${role}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         },
@@ -139,7 +139,7 @@ const TransactionsPage = () => {
     try {
       const payload = { status: newStatus };
 
-      const response = await fetch(`/api/users/${userId}/transactions/${transactionId}`, {
+      const response = await fetch(`${apiBaseURL}/users/${userId}/transactions/${transactionId}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,

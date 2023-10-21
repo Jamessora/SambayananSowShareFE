@@ -15,7 +15,7 @@
 //         console.log("Received ID Token:", idToken);
 //         try {
 //           console.log("Sending ID Token to backend for verification...");
-//           const response = await fetch('/api/users/sessions/create', {
+//           const response = await fetch('${apiBaseURL}/users/sessions/create', {
 //             method: 'POST',
 //             headers: {
 //               'Content-Type': 'application/json',
@@ -42,7 +42,7 @@
 //       const handleEmailPasswordLogin = async (e) => {
 //         e.preventDefault();
 //         try {
-//           const response = await fetch('/api/users/sessions/create', {
+//           const response = await fetch('${apiBaseURL}/users/sessions/create', {
 //             method: 'POST',
 //             headers: {
 //               'Content-Type': 'application/json',

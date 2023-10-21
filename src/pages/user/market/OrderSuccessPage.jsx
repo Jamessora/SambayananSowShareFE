@@ -27,7 +27,7 @@ const OrderSuccessPage = () => {
     
     const fetchTransactionDetails = async () => {
       // Fetch transaction details based on transactionId and set them in state
-      const response = await fetch(`/api/users/${userId}/transactions/${transactionId}`, {
+      const response = await fetch(`${apiBaseURL}/users/${userId}/transactions/${transactionId}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
