@@ -8,6 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import useSnackbar from '../../../services/snackbarService';
 import Sidebar from '../../../components/Sidebar';
 
+
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 console.log("Initial token:", token);
@@ -50,6 +51,8 @@ const CropsPage = () => {
     const handleCloseAddDialog = () => {
       setOpenAddDialog(false);
     };
+
+    
     
     
     const formatDate = (isoString) => {
@@ -92,6 +95,7 @@ const CropsPage = () => {
     }, [userId]);
   
     const fetchCrops = async () => {
+      console.log("API Base URL is: ", import.meta.env.VITE_API_BASE_URL);
         const response = await fetch(`/api/users/${userId}/crops`, {
             headers: {
               'Authorization': `Bearer ${token}`
@@ -104,6 +108,7 @@ const CropsPage = () => {
 
     //Add New Crops
     const addCrop = async () => {
+      console.log("API Base URL is: ", import.meta.env.VITE_API_BASE_URL);
         const response = await fetch(`/api/users/${userId}/crops`, {
           method: 'POST',
           headers: {
@@ -133,7 +138,7 @@ const CropsPage = () => {
             const date = new Date(updatedEditingCrop.crop_expiry_date);
             updatedEditingCrop.crop_expiry_date = date.toISOString();
         }
-
+        
         const response = await fetch(`/api/users/${userId}/crops/${editingCrop.id}`, {
           method: 'PUT',
           headers: {

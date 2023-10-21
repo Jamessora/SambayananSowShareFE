@@ -3,7 +3,8 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 // Read environment variables
-const apiBaseUrl = process.env.VITE_API_BASE_URL_LOCAL || 'http://localhost:3000';
+
+const apiBaseUrl = process.env.VITE_API_BASE_URL || 'http://localhost:3000';
 
 export default defineConfig({
   plugins: [react()],

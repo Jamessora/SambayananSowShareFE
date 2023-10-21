@@ -6,6 +6,19 @@ import jwt_decode from "jwt-decode";
 export const token = localStorage.getItem('jwt');
 
 
+const getApiBaseUrl = () => {
+  if (import.meta.env.DEV) {
+    return import.meta.env.VITE_API_BASE_URL_LOCAL;
+  }
+  return import.meta.env.VITE_API_BASE_URL;
+};
+
+export const apiBaseURL = getApiBaseUrl();
+
+// export function checkKYCStatus() {
+//   return localStorage.getItem('kyc_status');
+// }
+
 
 
 
@@ -17,7 +30,7 @@ export const getUserIdFromToken = () => {
 
   try {
     const decoded = jwt_decode(token);
-    console.log("decoded token:",decoded)
+    console.log("decoded token inside getuserid:",decoded)
     return decoded.id; // replace 'user_id' with the actual key where userId is stored in your token payload
 
   } catch (e) {
