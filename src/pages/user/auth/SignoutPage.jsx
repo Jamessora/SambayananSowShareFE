@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import {token} from '../../../services/user/authService';
+import {apiBaseURL, token} from '../../../services/user/authService';
 
 
 const SignOutPage = () => {
@@ -9,7 +9,7 @@ const SignOutPage = () => {
   const handleSignOut = async () => {
     try {
       // Replace with the actual API endpoint and method to sign out
-      const response = await fetch(`/api/users/sign_out`, {
+      const response = await fetch(`${apiBaseURL}/users/sign_out`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

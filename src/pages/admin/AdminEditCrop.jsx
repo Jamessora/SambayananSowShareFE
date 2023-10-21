@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { apiBaseURL} from '../../services/user/authService';
 
 const AdminEditCrop = ({ cropId }) => {
   const [cropData, setCropData] = useState({
@@ -9,7 +10,7 @@ const AdminEditCrop = ({ cropId }) => {
 
   useEffect(() => {
     const fetchCropData = async () => {
-      const response = await fetch(`/admin/crops/${cropId}`, {
+      const response = await fetch(`${apiBaseURL}/admin/crops/${cropId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

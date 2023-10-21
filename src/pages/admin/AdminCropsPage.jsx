@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { apiBaseURL} from '../../services/user/authService';
 
 const AdminCropsPage = () => {
   const [crops, setCrops] = useState([]);
@@ -9,7 +10,7 @@ const AdminCropsPage = () => {
   
   const handleDeleteCrop = async (cropId) => {
     try {
-      const response = await fetch(`/api/admin/crops/${cropId}`, {
+      const response = await fetch(`${apiBaseURL}/admin/crops/${cropId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${YOUR_ADMIN_TOKEN_HERE}`
@@ -29,7 +30,7 @@ const AdminCropsPage = () => {
   useEffect(() => {
     const fetchCrops = async () => {
       try {
-        const response = await fetch('/api/admin/crops', {
+        const response = await fetch(`${apiBaseURL}/admin/crops`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${YOUR_ADMIN_TOKEN_HERE}`

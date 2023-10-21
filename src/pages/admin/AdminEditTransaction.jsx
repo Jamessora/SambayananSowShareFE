@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { apiBaseURL} from '../../services/user/authService';
+
 
 const AdminEditTransaction = ({ transactionId }) => {
   const [transactionData, setTransactionData] = useState({
@@ -8,7 +10,7 @@ const AdminEditTransaction = ({ transactionId }) => {
 
   useEffect(() => {
     const fetchTransactionData = async () => {
-      const response = await fetch(`/admin/transactions/${transactionId}`, {
+      const response = await fetch(`${apiBaseURL}/admin/transactions/${transactionId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

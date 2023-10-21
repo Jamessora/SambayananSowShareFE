@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import { apiBaseURL} from '../../../services/user/authService';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -11,7 +12,7 @@ const AdminSignupPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`/api/admins`, {
+      const response = await fetch(`${apiBaseURL}/admins`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

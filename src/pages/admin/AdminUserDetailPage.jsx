@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { apiBaseURL} from '../../services/user/authService';
 
 const AdminUserDetailPage = () => {
     const [userDetails, setUserDetails] = useState(null);
@@ -9,7 +10,7 @@ const AdminUserDetailPage = () => {
     console.log("User Id:",userId)
     const fetchUserDetails = async () => {
       try {
-        const response = await fetch(`/api/admin/users/${userId}`);
+        const response = await fetch(`${apiBaseURL}/admin/users/${userId}`);
         const data = await response.json();
         if (response.ok) {
             setUserDetails(data);

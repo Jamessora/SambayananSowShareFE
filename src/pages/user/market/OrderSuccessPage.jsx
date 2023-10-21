@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { token, getUserIdFromToken } from '../../../services/user/authService';
+import {apiBaseURL, token, getUserIdFromToken } from '../../../services/user/authService';
 
 const OrderSuccessPage = () => {
   const [transaction, setTransaction] = useState(null);
