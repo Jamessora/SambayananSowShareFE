@@ -40,6 +40,7 @@ const KycFormPage = () => {
 
     const response = await fetch(`${apiBaseURL}/kyc`, {
       method: 'POST',
+      credentials: 'include',
       headers: {
         // Include the JWT token here
         'Authorization': `Bearer ${token}`
