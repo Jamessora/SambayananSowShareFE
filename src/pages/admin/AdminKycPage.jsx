@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { token, apiURL } from '../../services/user/authService';
 
 const AdminKYCPage = () => {
   const [pendingKYC, setPendingKYC] = useState([]);
@@ -20,7 +21,15 @@ const AdminKYCPage = () => {
     console.log("idPhoto:", pendingKYC[0].idPhoto);
   }
   const fetchPendingKYC = async () => {
-    const response = await fetch(`/api/admin/kyc`);
+    console.log("apiURL:", apiURL);
+    const response = await fetch(`${apiURL}/admin/kyc`,{
+      credentials: 'include',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        // ... other headers
+    },
+
+    });
 
     if (!response.ok) {
       throw new Error(`Error fetching KYC data: ${response.statusText}`);
@@ -28,7 +37,7 @@ const AdminKYCPage = () => {
 
     const contentType = response.headers.get("content-type");
     if (!contentType || !contentType.includes("application/json")) {
-      throw new Error("Received non-JSON response");
+      throw new Error("Received non-JSON response",response);
     }
 
     const data = await response.json();
@@ -58,16 +67,28 @@ const AdminKYCPage = () => {
   };
 
   const approveKYC = async (userId) => {
-    const response = await fetch(`/api/admin/kyc/${userId}/approve`, {
+    const response = await fetch(`${apiURL}/admin/kyc/${userId}/approve`, {
       method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        // ... other headers
+    },
+
     });
     const data = await response.json();
     return data;
   };
 
   const rejectKYC = async (userId) => {
-    const response = await fetch(`/api/admin/kyc/${userId}/reject`, {
+    const response = await fetch(`${apiURL}/admin/kyc/${userId}/reject`, {
       method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        // ... other headers
+    },
+
     });
     const data = await response.json();
     return data;
