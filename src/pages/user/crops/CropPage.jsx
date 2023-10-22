@@ -7,6 +7,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import useSnackbar from '../../../services/snackbarService';
 import Sidebar from '../../../components/Sidebar';
+import { apiURL } from '../../../services/user/authService';
 
 
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -96,7 +97,8 @@ const CropsPage = () => {
   
     const fetchCrops = async () => {
       console.log("API Base URL is: ", import.meta.env.VITE_API_BASE_URL);
-        const response = await fetch(`/api/users/${userId}/crops`, {
+        const response = await fetch(`${apiURL}/users/${userId}/crops`, {
+          credentials: 'include',
             headers: {
               'Authorization': `Bearer ${token}`
             }
@@ -109,8 +111,9 @@ const CropsPage = () => {
     //Add New Crops
     const addCrop = async () => {
       console.log("API Base URL is: ", import.meta.env.VITE_API_BASE_URL);
-        const response = await fetch(`/api/users/${userId}/crops`, {
+        const response = await fetch(`${apiURL}/users/${userId}/crops`, {
           method: 'POST',
+          credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
@@ -139,8 +142,9 @@ const CropsPage = () => {
             updatedEditingCrop.crop_expiry_date = date.toISOString();
         }
         
-        const response = await fetch(`/api/users/${userId}/crops/${editingCrop.id}`, {
+        const response = await fetch(`${apiURL}/users/${userId}/crops/${editingCrop.id}`, {
           method: 'PUT',
+          credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
@@ -166,8 +170,9 @@ const CropsPage = () => {
       
     //Delete a crop
     const deleteCrop = async (cropId) => {
-        const response = await fetch(`/api/users/${userId}/crops/${cropId}`, {
+        const response = await fetch(`${apiURL}/users/${userId}/crops/${cropId}`, {
           method: 'DELETE',
+          credentials: 'include',
           headers: {
             
             'Authorization': `Bearer ${token}`

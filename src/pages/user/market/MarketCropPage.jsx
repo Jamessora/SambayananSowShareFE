@@ -7,6 +7,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import useSnackbar from '../../../services/snackbarService';
+import { apiURL } from '../../../services/user/authService';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -46,8 +47,9 @@ const MarketCropPage = () => {
   const initializeTransaction = async (cropId) => {
     try {
       
-      const response = await fetch(`/api/users/${userId}/transactions/`, {
+      const response = await fetch(`${apiURL}/users/${userId}/transactions/`, {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -96,8 +98,9 @@ const MarketCropPage = () => {
         quantity: quantity
       };
       
-      const response = await fetch(`/api/users/${userId}/transactions/${transactionId}/transaction_crops`, {
+      const response = await fetch(`${apiURL}/users/${userId}/transactions/${transactionId}/transaction_crops`, {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -170,7 +173,8 @@ const MarketCropPage = () => {
 
   const fetchTransactionCrops = async () => {
     try {
-      const response = await fetch (`/api/users/${userId}/transaction-crops`, {
+      const response = await fetch (`${apiURL}/users/${userId}/transaction-crops`, {
+        credentials: 'include',
         headers: {
           'Authorization': `Bearer ${token}`,
         },

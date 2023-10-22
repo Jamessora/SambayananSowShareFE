@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { token, getUserIdFromToken } from '../../../services/user/authService';
+import { apiURL, token, getUserIdFromToken } from '../../../services/user/authService';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -111,7 +111,8 @@ const TransactionsPage = () => {
   const fetchTransactions = async (userId, role) => {
     
     try {
-      const response = await fetch(`/api/users/${userId}/transactions?role=${role}`, {
+      const response = await fetch(`${apiURL}/users/${userId}/transactions?role=${role}`, {
+        credentials: 'include',
         headers: {
           'Authorization': `Bearer ${token}`
         },
@@ -139,8 +140,9 @@ const TransactionsPage = () => {
     try {
       const payload = { status: newStatus };
 
-      const response = await fetch(`/api/users/${userId}/transactions/${transactionId}`, {
+      const response = await fetch(`${apiURL}/users/${userId}/transactions/${transactionId}`, {
         method: 'PUT',
+        credentials: 'include',
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
