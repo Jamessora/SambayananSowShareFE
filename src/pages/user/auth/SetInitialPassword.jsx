@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-
+import { apiBaseURL } from '../../../services/user/authService';
 
 const SetInitialPassword = () => {
   const { token } = useParams();
@@ -16,9 +16,10 @@ const SetInitialPassword = () => {
 
         console.log("Validating token:", token);
 
-
-        const response = await fetch('/api/users/set_initial_password', {
+        console.log("imported apiBaseURL:",apiBaseURL)
+        const response = await fetch(`${apiBaseURL}/users/set_initial_password`, {
           method: 'POST',
+          credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
           },
@@ -53,9 +54,10 @@ const SetInitialPassword = () => {
     try {
       console.log("Submitting new password:", password);
 
-
-      const response = await fetch('/api/users/update_initial_password', {
+      console.log("imported apiBaseURL:",apiBaseURL)
+      const response = await fetch(`${apiBaseURL}/users/update_initial_password`, {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
