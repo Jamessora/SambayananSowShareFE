@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { apiBaseURL } from '../../../services/user/authService';
 
+
 const SetInitialPassword = () => {
   const { token } = useParams();
   const navigate = useNavigate();
