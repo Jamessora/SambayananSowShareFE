@@ -157,10 +157,10 @@ const MarketCropPage = () => {
     // This function fetches all crops
     const fetchAllCrops = async () => {
       try {
-        const response = await fetch(`/api/market`);
+        const response = await fetch(`${apiURL}/market`);
         const data = await response.json();
     if (response.ok) {
-      console.log("Fetching all crops aside from the useeffect",data);
+      console.log("Fetching all crops insideide of useeffect",data);
       return data;
       
     } else {
