@@ -28,10 +28,9 @@ const SignupComponent = () => {
         console.log("Received ID Token:", idToken);
         try {
           console.log("Sending ID Token to backend for verification...");
-          console.log("API Base URL is: ", import.meta.env.VITE_API_BASE_URL)
+          console.log("API Base URL is: ", apiURL)
           const response = await fetch(`${apiURL}/users/registrations/create`, {
             method: 'POST',
-            credentials: 'include',
             headers: {
               'Content-Type': 'application/json',
             },
