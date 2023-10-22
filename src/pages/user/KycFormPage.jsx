@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { apiBaseURL } from '../../services/user/authService';
+import { apiURL } from '../../services/user/authService';
+
 const KycFormPage = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -36,15 +37,13 @@ const KycFormPage = () => {
       formDataObj.append(key, formData[key]);
     });
 
-    
-
-    const response = await fetch(`${apiBaseURL}/kyc`, {
+    const response = await fetch(`${apiURL}/kyc`, {
       method: 'POST',
+      credentials: 'include',
       headers: {
-        // Include the JWT token here
+        
         'Authorization': `Bearer ${token}`
-        //'Content-Type': 'multipart/form-data',
-        //'Accept': 'application/json'
+        
       },
       body: formDataObj,
     });

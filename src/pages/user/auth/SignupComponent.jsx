@@ -12,6 +12,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import React, { useState } from 'react';
 import { GoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
+import { apiURL } from '../../../services/user/authService';
 
 const theme = createTheme();
 
@@ -28,8 +29,9 @@ const SignupComponent = () => {
         try {
           console.log("Sending ID Token to backend for verification...");
           console.log("API Base URL is: ", import.meta.env.VITE_API_BASE_URL)
-          const response = await fetch('/api/users/registrations/create', {
+          const response = await fetch(`${apiURL}/users/registrations/create`, {
             method: 'POST',
+            credentials: 'include',
             headers: {
               'Content-Type': 'application/json',
             },

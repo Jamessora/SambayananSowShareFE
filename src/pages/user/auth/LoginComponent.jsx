@@ -5,7 +5,7 @@ import { GoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
 import { Avatar, Button, TextField, FormControlLabel, Checkbox, Grid, Typography, Container, Box } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-
+import { apiURL } from '../../../services/user/authService';
 
 
 const LoginComponent = () => {
@@ -23,7 +23,7 @@ const LoginComponent = () => {
 
       console.log("Sending ID Token to backend for verification...");
       console.log("API Base URL is: ", import.meta.env.VITE_API_BASE_URL);
-      const response = await fetch('/api/users/sessions/create', {
+      const response = await fetch(`${apiURL}/users/sessions/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ const LoginComponent = () => {
     e.preventDefault();
     try {
       console.log("API Base URL is: ", import.meta.env.VITE_API_BASE_URL);
-      const response = await fetch('/api/users/sessions/create', {
+      const response = await fetch(`${apiURL}/users/sessions/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
