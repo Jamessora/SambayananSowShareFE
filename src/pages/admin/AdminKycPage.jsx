@@ -23,9 +23,12 @@ const AdminKYCPage = () => {
   const fetchPendingKYC = async () => {
     console.log("apiURL:", apiURL);
     const response = await fetch(`${apiURL}/admin/kyc`,{
+      method: 'GET',
       credentials: 'include',
       headers: {
         'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+              "Accept": "application/json"
         // ... other headers
     },
 
