@@ -5,13 +5,14 @@ import { GoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
 import { Avatar, Button, TextField, FormControlLabel, Checkbox, Grid, Typography, Container, Box } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-
+import { apiBaseURLtest } from '../../../services/user/authService';
 
 
 const LoginComponent = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const consoleapi = apiBaseURLtest
 
   const onSuccess = async (credentialResponse) => {
         
@@ -20,16 +21,18 @@ const LoginComponent = () => {
     const idToken = credentialResponse.credential;
     console.log("Received ID Token:", idToken);
     try {
-
+      console.log("imported apiBaseURL:",apiBaseURLtest)
       console.log("Sending ID Token to backend for verification...");
       console.log("API Base URL is: ", import.meta.env.VITE_API_BASE_URL);
-      const response = await fetch('/api/users/sessions/create', {
+      console.log("imported apiBaseURL console:",consoleapi)
+
+      const response = await fetch(`${apiBaseURLtest}/users/sessions/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ id_token: idToken }),
-      });
+      }); 
 
       const data = await response.json();
       console.log("Received response from backend:", data);
@@ -51,7 +54,9 @@ const LoginComponent = () => {
     e.preventDefault();
     try {
       console.log("API Base URL is: ", import.meta.env.VITE_API_BASE_URL);
-      const response = await fetch('/api/users/sessions/create', {
+      console.log("imported apiBaseURL:",apiBaseURLtest)
+      console.log("imported apiBaseURL console:",consoleapi)
+      const response = await fetch(`${apiBaseURLtest}/users/sessions/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

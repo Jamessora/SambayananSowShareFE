@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {token, apiBaseURLtest } from '../../services/user/authService';
 
 const AdminKYCPage = () => {
   const [pendingKYC, setPendingKYC] = useState([]);
@@ -20,7 +21,16 @@ const AdminKYCPage = () => {
     console.log("idPhoto:", pendingKYC[0].idPhoto);
   }
   const fetchPendingKYC = async () => {
-    const response = await fetch(`/api/admin/kyc`);
+    console.log("imported apiBaseURL:",apiBaseURLtest)
+    const response = await fetch(`${apiBaseURLtest}/admin/kyc`, {
+      credentials: 'include',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        // ... other headers
+      }}
+      
+      
+      );
 
     if (!response.ok) {
       throw new Error(`Error fetching KYC data: ${response.statusText}`);

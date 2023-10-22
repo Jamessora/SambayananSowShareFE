@@ -15,6 +15,8 @@ const getApiBaseUrl = () => {
 
 export const apiBaseURL = getApiBaseUrl();
 
+export const apiBaseURLtest = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+
 // export function checkKYCStatus() {
 //   return localStorage.getItem('kyc_status');
 // }

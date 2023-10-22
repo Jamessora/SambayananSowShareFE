@@ -7,7 +7,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import useSnackbar from '../../../services/snackbarService';
 import Sidebar from '../../../components/Sidebar';
-
+import { apiBaseURLtest } from '../../../services/user/authService';
 
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
@@ -96,9 +96,11 @@ const CropsPage = () => {
   
     const fetchCrops = async () => {
       console.log("API Base URL is: ", import.meta.env.VITE_API_BASE_URL);
-        const response = await fetch(`/api/users/${userId}/crops`, {
+      console.log("imported apiBaseURL:",apiBaseURLtest)
+        const response = await fetch(`${apiBaseURLtest}/users/${userId}/crops`, {
             headers: {
-              'Authorization': `Bearer ${token}`
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json'
             }
           });
       const data = await response.json();
@@ -138,7 +140,7 @@ const CropsPage = () => {
             const date = new Date(updatedEditingCrop.crop_expiry_date);
             updatedEditingCrop.crop_expiry_date = date.toISOString();
         }
-        
+
         const response = await fetch(`/api/users/${userId}/crops/${editingCrop.id}`, {
           method: 'PUT',
           headers: {
