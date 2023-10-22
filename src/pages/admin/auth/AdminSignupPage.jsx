@@ -1,7 +1,6 @@
 import React,{useState} from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import { apiBaseURL } from '../../../services/user/authService';
 
 const AdminSignupPage = () => {
   const [email, setEmail] = useState('');
@@ -12,11 +11,8 @@ const AdminSignupPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log("imported apiBaseURL:",apiBaseURL)
-      console.log("API Base URL is: ", import.meta.env.VITE_API_BASE_URL);
-      const response = await fetch(`${apiBaseURL}/admins`, {
+      const response = await fetch(`/api/admins`, {
         method: 'POST',
-        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },

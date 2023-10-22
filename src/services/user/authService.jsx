@@ -6,7 +6,14 @@ import jwt_decode from "jwt-decode";
 export const token = localStorage.getItem('jwt');
 
 
-export const apiBaseURL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+const getApiBaseUrl = () => {
+  if (import.meta.env.DEV) {
+    return import.meta.env.VITE_API_BASE_URL_LOCAL;
+  }
+  return import.meta.env.VITE_API_BASE_URL;
+};
+
+export const apiBaseURL = getApiBaseUrl();
 
 // export function checkKYCStatus() {
 //   return localStorage.getItem('kyc_status');

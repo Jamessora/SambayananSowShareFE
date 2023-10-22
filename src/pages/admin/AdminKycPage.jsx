@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import {token, apiBaseURL } from '../../services/user/authService';
 
 const AdminKYCPage = () => {
   const [pendingKYC, setPendingKYC] = useState([]);
@@ -21,16 +20,7 @@ const AdminKYCPage = () => {
     console.log("idPhoto:", pendingKYC[0].idPhoto);
   }
   const fetchPendingKYC = async () => {
-    console.log("imported apiBaseURL:",apiBaseURL)
-    const response = await fetch(`${apiBaseURL}/admin/kyc`, {
-      credentials: 'include',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        // ... other headers
-      }}
-      
-      
-      );
+    const response = await fetch(`/api/admin/kyc`);
 
     if (!response.ok) {
       throw new Error(`Error fetching KYC data: ${response.statusText}`);
@@ -70,12 +60,6 @@ const AdminKYCPage = () => {
   const approveKYC = async (userId) => {
     const response = await fetch(`/api/admin/kyc/${userId}/approve`, {
       method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        // ... other headers
-      }
-
     });
     const data = await response.json();
     return data;
@@ -84,12 +68,6 @@ const AdminKYCPage = () => {
   const rejectKYC = async (userId) => {
     const response = await fetch(`/api/admin/kyc/${userId}/reject`, {
       method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        // ... other headers
-      }
-
     });
     const data = await response.json();
     return data;

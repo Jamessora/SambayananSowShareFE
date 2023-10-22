@@ -7,7 +7,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import useSnackbar from '../../../services/snackbarService';
 import Sidebar from '../../../components/Sidebar';
-import { apiBaseURL } from '../../../services/user/authService';
+
 
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
@@ -96,12 +96,9 @@ const CropsPage = () => {
   
     const fetchCrops = async () => {
       console.log("API Base URL is: ", import.meta.env.VITE_API_BASE_URL);
-      console.log("imported apiBaseURL:",apiBaseURL)
-        const response = await fetch(`${apiBaseURL}/users/${userId}/crops`, {
-          credentials: 'include',
+        const response = await fetch(`/api/users/${userId}/crops`, {
             headers: {
-              'Authorization': `Bearer ${token}`,
-              'Content-Type': 'application/json'
+              'Authorization': `Bearer ${token}`
             }
           });
       const data = await response.json();
@@ -112,10 +109,8 @@ const CropsPage = () => {
     //Add New Crops
     const addCrop = async () => {
       console.log("API Base URL is: ", import.meta.env.VITE_API_BASE_URL);
-      console.log("imported apiBaseURL:",apiBaseURL)
-        const response = await fetch(`${apiBaseURL}/users/${userId}/crops`, {
+        const response = await fetch(`/api/users/${userId}/crops`, {
           method: 'POST',
-          credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
@@ -143,11 +138,9 @@ const CropsPage = () => {
             const date = new Date(updatedEditingCrop.crop_expiry_date);
             updatedEditingCrop.crop_expiry_date = date.toISOString();
         }
-        console.log("API Base URL is: ", import.meta.env.VITE_API_BASE_URL);
-        console.log("imported apiBaseURL:",apiBaseURL)
-        const response = await fetch(`${apiBaseURL}/users/${userId}/crops/${editingCrop.id}`, {
+        
+        const response = await fetch(`/api/users/${userId}/crops/${editingCrop.id}`, {
           method: 'PUT',
-          credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
@@ -173,11 +166,8 @@ const CropsPage = () => {
       
     //Delete a crop
     const deleteCrop = async (cropId) => {
-      console.log("API Base URL is: ", import.meta.env.VITE_API_BASE_URL);
-      console.log("imported apiBaseURL:",apiBaseURL)
-        const response = await fetch(`${apiBaseURL}/api/users/${userId}/crops/${cropId}`, {
+        const response = await fetch(`/api/users/${userId}/crops/${cropId}`, {
           method: 'DELETE',
-          credentials: 'include',
           headers: {
             
             'Authorization': `Bearer ${token}`
