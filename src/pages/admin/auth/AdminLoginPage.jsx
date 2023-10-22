@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import { GoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
-import { apiURL } from '../../services/user/authService';
+
+import { apiURL } from '../../../services/user/authService';
+
 
 const AdminLoginPage = () => {
     const navigate =  useNavigate();
