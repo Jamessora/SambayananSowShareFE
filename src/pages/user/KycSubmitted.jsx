@@ -18,7 +18,7 @@ const KycSubmitted = () => {
         Go back to the DashboardPage
 
         <button onClick={() => navigate('/dashboard')}>
-            Log in to account
+            Back to dashboard
           </button>
       </div>
 

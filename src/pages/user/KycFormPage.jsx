@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiURL } from '../../services/user/authService';
+import { TextField, Button, Container, FormControl, InputLabel, Select, MenuItem, Box, Typography } from '@mui/material';
+import UserSidebar from '../../components/UserSidebar';
 
 const KycFormPage = () => {
   const navigate = useNavigate();
@@ -60,106 +62,143 @@ const KycFormPage = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Full Name</label>
-        <input
-          type="text"
+    <UserSidebar>
+    <Container component="main" maxWidth="xs">
+    <Box sx={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center'
+    }}>
+      <Typography component="h1" variant="h5">
+        Submit KYC
+      </Typography>
+
+      <form onSubmit={handleSubmit}>
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          label="Full Name"
           name="fullName"
           value={formData.fullName}
           onChange={handleChange}
-          required
         />
-      </div>
 
-      <div>
-        <label>Birthday</label>
-        <input
-          type="date"
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          label="Birthday"
           name="birthday"
+          type="date"
           value={formData.birthday}
           onChange={handleChange}
-          required
+          InputLabelProps={{ shrink: true }}
         />
-      </div>
-      Address
-      <div>
-        <label>Country</label>
-        <input
-          type="text"
+
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          label="Country"
           name="address_country"
           value={formData.address_country}
           onChange={handleChange}
-          required
         />
-      </div>
-      <div>
-        <label>City</label>
-        <input
-          type="text"
+
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          label="City"
           name="address_city"
           value={formData.address_city}
           onChange={handleChange}
-          required
         />
-      </div>
-      
-      <div>
-        <label>Baranggay</label>
-        <input
-          type="text"
+
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          label="Baranggay"
           name="address_baranggay"
           value={formData.address_baranggay}
           onChange={handleChange}
-          required
         />
-      </div>
 
-      <div>
-        <label>Street</label>
-        <input
-          type="text"
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          label="Street"
           name="address_street"
           value={formData.address_street}
           onChange={handleChange}
-          required
         />
-      </div>
 
-      <div>
-        <label>ID Type</label>
-        <select name="idType" value={formData.idType} onChange={handleChange} required>
-          <option value="" disabled>Select ID Type</option>
-          <option value="passport">Passport</option>
-          <option value="driverLicense">Driver's License</option>
-          <option value="nationalID">National ID</option>
-        </select>
-      </div>
+        <FormControl variant="outlined" fullWidth margin="normal">
+          <InputLabel>ID Type</InputLabel>
+          <Select
+            name="idType"
+            value={formData.idType}
+            onChange={handleChange}
+            label="ID Type"
+            required
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value="passport">Passport</MenuItem>
+            <MenuItem value="driverLicense">Driver's License</MenuItem>
+            <MenuItem value="nationalID">National ID</MenuItem>
+          </Select>
+        </FormControl>
 
-      <div>
-        <label>ID Number</label>
-        <input
-          type="text"
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          label="ID Number"
           name="idNumber"
           value={formData.idNumber}
           onChange={handleChange}
-          required
         />
-      </div>
 
-      <div>
-        <label>ID Photo</label>
-        <input
-          type="file"
-          name="idPhoto"
-          onChange={handleFileChange}
-          required
-        />
-      </div>
+        <Button
+          variant="contained"
+          component="label"
+          fullWidth
+          margin="normal"
+        >
+          Upload ID Photo
+          <input
+            type="file"
+            name="idPhoto"
+            hidden
+            onChange={handleFileChange}
+            required
+          />
+        </Button>
 
-
-      <button type="submit">Submit KYC</button>
-    </form>
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+        >
+          Submit
+        </Button>
+      </form>
+    </Box>
+  </Container>
+  </UserSidebar>
   );
 };
 

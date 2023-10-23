@@ -12,7 +12,7 @@ const AdminEditTransaction = ({ transactionId }) => {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          // Add any required headers like Authorization
+  
         },
       });
       const data = await response.json();
@@ -37,7 +37,7 @@ const AdminEditTransaction = ({ transactionId }) => {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        // Add any required headers like Authorization
+        
       },
       body: JSON.stringify(transactionData),
     });
@@ -56,7 +56,7 @@ const AdminEditTransaction = ({ transactionId }) => {
         <select name="status" value={transactionData.status} onChange={handleChange}>
           <option value="For Seller Confirmation">For Seller Confirmation</option>
           <option value="For Buyer Payment">For Buyer Payment</option>
-          {/* Add other statuses */}
+        
         </select>
       </label>
       {/* Add other fields */}

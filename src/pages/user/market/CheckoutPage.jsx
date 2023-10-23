@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Typography } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import { apiURL } from '../../../services/user/authService';
+import UserSidebar from '../../../components/UserSidebar';
 
 const CheckoutPage = () => {
 
@@ -84,7 +85,7 @@ const CheckoutPage = () => {
           });
       
           if (response.ok) {
-            // Assume 'cart' is the state variable holding your cart items
+            // 'cart' is the state variable holding cart items
             const updatedCart = cart.filter(item => item.transactionCropId !== transactionCropId);
             
             setCart(updatedCart);
@@ -182,6 +183,7 @@ const CheckoutPage = () => {
       }, [userId]);
 
       return (
+        <UserSidebar>
         <div>
           {isLoading ? 
           <div><CircularProgress /></div> : 
@@ -235,6 +237,7 @@ const CheckoutPage = () => {
           </div>
           }
     </div>
+    </UserSidebar>
   );
 };
 

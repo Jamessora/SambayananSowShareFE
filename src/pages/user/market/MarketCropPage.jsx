@@ -8,6 +8,7 @@ import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import useSnackbar from '../../../services/snackbarService';
 import { apiURL } from '../../../services/user/authService';
+import UserSidebar from '../../../components/UserSidebar';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -305,6 +306,7 @@ const MarketCropPage = () => {
   
   
 return (
+  <UserSidebar>
   <div>
       <h1>All Available Crops</h1>
 
@@ -392,6 +394,7 @@ return (
       
       <SnackbarComponent />
     </div>
+    </UserSidebar>
   );
 };
 

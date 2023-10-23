@@ -1,5 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { token, apiURL } from '../../services/user/authService';
+import UserSidebar from '../../components/AdminSidebar';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Button,
+} from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
+
+const theme = createTheme();
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+  width: '250px',
+  height: '250px',
+  flexGrow: 1,
+}));
 
 const AdminUsersPage = () => {
   const [users, setUsers] = useState([]);
@@ -7,9 +34,14 @@ const AdminUsersPage = () => {
 
   const handleDelete = async (userId) => {
     try {
-      const response = await fetch(`/api/admin/users/${userId}`, {
-        method: 'DELETE'
-      });
+      const response = await fetch(`${apiURL}/admin/users/${userId}`, {
+        method: 'DELETE',
+        credentials: 'include',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+  
+      })
       if (response.ok) {
         // Remove the user from the state to update the UI
         setUsers(users.filter(user => user.id !== userId));
@@ -31,7 +63,15 @@ const AdminUsersPage = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('/api/admin/users');
+        const response = await fetch(`${apiURL}/admin/users`,{
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        },
+  
+      })
+        
         const data = await response.json();
         if (response.ok) {
           setUsers(data);
@@ -47,40 +87,48 @@ const AdminUsersPage = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Admin Users</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Email</th>
-            <th>Full Name</th>
-            <th>KYC Status</th>
-            {/* Add more columns as needed */}
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user, index) => (
-            <tr key={index}>
-              <td>{user.id}</td>
-              <td>{user.email}</td>
-              <td>{user.fullName}</td>
-              <td>{user.kyc_status}</td>
-              {/* Add more cells as needed */}
-              <td>
-                <button onClick={() => handleShow(user.id)}>Show</button>
-                <button onClick={() => handleEdit(user.id)}>Edit</button>
-                <button onClick={() => handleDelete(user.id)}>Delete</button>
-                {/* Add more action-specific buttons here */}
-               </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      <button onClick={() => navigate('/admin/users/create')}>Create user</button>
-    </div>
+    <UserSidebar>
+      <div>
+        <h1>Admin Users</h1>
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>ID</TableCell>
+                <TableCell>Email</TableCell>
+                <TableCell>Full Name</TableCell>
+                <TableCell>KYC Status</TableCell>
+                <TableCell>Actions</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {users.map((user, index) => (
+                <TableRow key={index}>
+                  <TableCell>{user.id}</TableCell>
+                  <TableCell>{user.email}</TableCell>
+                  <TableCell>{user.fullName}</TableCell>
+                  <TableCell>{user.kyc_status}</TableCell>
+                  <TableCell>
+                   <Button variant="contained" color="primary"  onClick={() => handleShow(user.id)}>
+                      Show
+                    </Button>
+                    <Button variant="contained" color="secondary"  onClick={() => handleEdit(user.id)}>
+                      Edit
+                    </Button>
+                    <Button variant="contained" color="error" onClick={() => handleDelete(user.id)}>
+                      Delete
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <Button variant="contained" color="primary" onClick={() => navigate('/admin/users/create')}>
+          Create User
+        </Button>
+      </div>
+    </UserSidebar>
   );
 };
 

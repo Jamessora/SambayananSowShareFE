@@ -98,11 +98,10 @@ export default function UserSidebar(props) {
   const navigate = useNavigate();
 
   const menuItems = [
-    { text: 'Dashboard', icon: <SpaceDashboardIcon /> ,  path: '/dashboard'},
-    { text: 'KYC', icon: <AdminPanelSettingsIcon />, path: '/kyc' },
-    { text: 'Market', icon: <StorefrontIcon />, path: '/market' },
-    { text: 'Crops', icon: <YardIcon />, path: '/crops' },
-    { text: 'Transactions', icon: <ReceiptLongIcon />, path: '/transactions' },
+    { text: 'Dashboard', icon: <SpaceDashboardIcon /> ,  path: '/admin/dashboard'},
+    { text: 'KYC Approvals', icon: <AdminPanelSettingsIcon />, path: '/admin/kyc' },
+    { text: 'Users', icon: <YardIcon />, path: '/admin/users' },
+    { text: 'Transactions', icon: <ReceiptLongIcon />, path: '/admin/transactions' },
   ];
 
   const handleDrawerOpen = () => {
@@ -131,7 +130,7 @@ export default function UserSidebar(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            SambayananSowShare
+            SambayananSowShare Admin Page
           </Typography>
         </Toolbar>
       </AppBar>

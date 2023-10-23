@@ -11,6 +11,7 @@ import { apiURL } from '../../../services/user/authService';
 
 
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import UserSidebar from '../../../components/UserSidebar';
 
 console.log("Initial token:", token);
 
@@ -199,7 +200,8 @@ const CropsPage = () => {
     
 
 return (
-  <>
+  
+    <UserSidebar>
    <IconButton 
   edge="start" 
   color="inherit" 
@@ -413,7 +415,8 @@ return (
       </Table>
     </Container>
   </ThemeProvider>
-  </>
+  
+  </UserSidebar>
 );
   };
 

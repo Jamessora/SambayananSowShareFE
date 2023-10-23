@@ -13,7 +13,7 @@ const AdminEditCrop = ({ cropId }) => {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          // Add any required headers like Authorization
+          
         },
       });
       const data = await response.json();

@@ -11,6 +11,7 @@ import { Menu } from '@mui/base/Menu';
 import { MenuButton as BaseMenuButton } from '@mui/base/MenuButton';
 import { MenuItem as BaseMenuItem, menuItemClasses } from '@mui/base/MenuItem';
 import { styled } from '@mui/system';
+import UserSidebar from '../../../components/UserSidebar';
 
 
 function CustomTabPanel(props) {
@@ -291,7 +292,7 @@ const TransactionsPage = () => {
 
         return (
           <Dropdown>
-          <MenuButton>Select Status</MenuButton>
+          <MenuButton disabled={options.length === 0}>Select Status</MenuButton>
           <Menu slots={{ listbox: Listbox }}>
             {options.map((option, index) => (
               <MenuItem key={index} onClick={() => updateTransaction(params.row.id, option)}>
@@ -328,6 +329,7 @@ const TransactionsPage = () => {
 
 
   return (
+    <UserSidebar>
     <div>
       <h1>Transactions</h1>
       <Box sx={{ width: '100%' }}>
@@ -350,58 +352,10 @@ const TransactionsPage = () => {
         </CustomTabPanel>
       </Box>
     </div>
+    </UserSidebar>
   );
 };
 
 export default TransactionsPage;
 
 
-// const TransactionsTable = ({ transactions, updateTransaction, role }) => (
-//     <table>
-//       <thead>
-//         <tr>
-//           <th>Action</th>
-//           <th>Transaction ID</th>
-//           <th>Status</th>
-//           <th>Details</th>
-//         </tr>
-//       </thead>
-//       <tbody>
-//         {transactions.map((transaction, i) => (
-//           <React.Fragment key={i}>
-//             <tr key={transaction.id}>
-//               <td>
-//               <select onChange={(e) => updateTransaction(transaction.id, e.target.value)}>
-//                 <option value="">Select Status</option>
-//                 {role === 'seller' && ['For Buyer Payment', 'For Delivery'].map((status) => (
-//                   <option key={status} value={status}>{status}</option>
-//                 ))}
-//                 {role === 'buyer' && ['For Seller Confirmation', 'Payment Sent For Seller Confirmation', 'Completed'].map((status) => (
-//                   <option key={status} value={status}>{status}</option>
-//                 ))}
-//               </select>
-//               </td>
-//               <td>{transaction.id}</td>
-//               <td>{transaction.status}</td>
-//               <td>
-//                 Ordered Date: {transaction.status === 'For Seller Confirmation' ? transaction.updated_at : 'N/A'}
-//               </td>
-//             </tr>
-//             {transaction.transaction_crops.map((transaction_crop, index) => (
-//               <tr key={index}>
-//                 <td colSpan="4">
-//                   {transaction_crop.crop.crop_name}, Quantity: {transaction_crop.quantity}, 
-//                   Sub Total: {transaction_crop.price}
-//                 </td>
-//               </tr>
-//             ))}
-//             <tr>
-//               <td colSpan="4">
-//                 Total Price: {transaction.total_price}
-//               </td>
-//             </tr>
-//           </React.Fragment>
-//         ))}
-//       </tbody>
-//     </table>
-//   );

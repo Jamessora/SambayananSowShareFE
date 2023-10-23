@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import {apiURL, token, getUserIdFromToken } from '../../../services/user/authService';
+import UserSidebar from '../../../components/UserSidebar';
 
 const OrderSuccessPage = () => {
   const [transaction, setTransaction] = useState(null);
@@ -47,6 +48,7 @@ const OrderSuccessPage = () => {
   }, [transactionId, userId]);
 
   return (
+    <UserSidebar>
     <div>
       <h2>Order Successful!</h2>
       {transaction && (
@@ -57,6 +59,7 @@ const OrderSuccessPage = () => {
         </>
       )}
     </div>
+    </UserSidebar>
   );
 };
 

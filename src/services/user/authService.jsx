@@ -33,7 +33,7 @@ export const getUserIdFromToken = () => {
   try {
     const decoded = jwt_decode(token);
     console.log("decoded token inside getuserid:",decoded)
-    return decoded.id; // replace 'user_id' with the actual key where userId is stored in your token payload
+    return decoded.id; // userId is stored in token payload
 
   } catch (e) {
     console.error('Error decoding token:', e);

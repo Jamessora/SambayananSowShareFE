@@ -40,6 +40,7 @@ import AdminTransactionsPage from './pages/admin/AdminTransactionsPage';
 import AdminUserDetailPage from './pages/admin/AdminUserDetailPage';
 import AdminEditUser from './pages/admin/AdminEditUser';
 import AdminCreateUser from './pages/admin/AdminCreateUser';
+import AdminTransactionDetailPage from './pages/admin/AdminTransactionDetailPage';
 
 
 
@@ -79,7 +80,8 @@ function App() {
     <Route path="/admin/users/:userId" element={<AdminUserDetailPage/>} />
     <Route path="/admin/users/:userId/edit" element={<AdminEditUser/>} />
     <Route path="/admin/users/create" element={<AdminCreateUser/>} />
-
+    <Route path="/admin/transactions" element={<AdminTransactionsPage/>} />
+    <Route path="/admin/transactions/:transactionId" element={<AdminTransactionDetailPage/>} />
     
 
 

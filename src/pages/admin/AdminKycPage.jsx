@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { token, apiURL } from '../../services/user/authService';
+import UserSidebar from '../../components/AdminSidebar';
 
 const AdminKYCPage = () => {
   const [pendingKYC, setPendingKYC] = useState([]);
@@ -75,7 +76,7 @@ const AdminKYCPage = () => {
       credentials: 'include',
       headers: {
         'Authorization': `Bearer ${token}`,
-        // ... other headers
+        
     },
 
     });
@@ -98,6 +99,7 @@ const AdminKYCPage = () => {
   };
 
   return (
+    <UserSidebar>
     <div>
     <h1>Admin KYC Page</h1>
     <ul>
@@ -121,6 +123,7 @@ const AdminKYCPage = () => {
       ))} 
     </ul>
   </div>
+  </UserSidebar>
   );
 };
 

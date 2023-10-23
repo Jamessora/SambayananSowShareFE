@@ -15,13 +15,25 @@ const Sidebar = ({ open, onClose }) => {
   return (
     <Drawer anchor="left" open={open} onClose={onClose}>
       <List>
-        <ListItem  key="Home" onClick={() => {navigate('/') }}>
+        <ListItem  key="Dashboard" onClick={() => {navigate('/dashboard') }}>
           <ListItemIcon><HomeIcon /></ListItemIcon>
           <ListItemText primary="Home" />
         </ListItem>
-        <ListItem  key="Crops" onClick={() => { navigate('/dashboard')  }}>
+        <ListItem  key="KYC" onClick={() => { navigate('/kyc')  }}>
+          <ListItemIcon><CropIcon /></ListItemIcon>
+          <ListItemText primary="KYC" />
+        </ListItem>
+        <ListItem  key="Market" onClick={() => { navigate('/market')  }}>
+          <ListItemIcon><CropIcon /></ListItemIcon>
+          <ListItemText primary="Market" />
+        </ListItem>
+        <ListItem  key="Crops" onClick={() => { navigate('/crops')  }}>
           <ListItemIcon><CropIcon /></ListItemIcon>
           <ListItemText primary="Crops" />
+        </ListItem>
+        <ListItem  key="Transactions" onClick={() => { navigate('/crops')  }}>
+          <ListItemIcon><CropIcon /></ListItemIcon>
+          <ListItemText primary="Transactions" />
         </ListItem>
       </List>
     </Drawer>
