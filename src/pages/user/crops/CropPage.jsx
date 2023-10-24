@@ -7,7 +7,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import useSnackbar from '../../../services/snackbarService';
 import Sidebar from '../../../components/Sidebar';
-import { apiURL } from '../../../services/user/authService';
+import {checkKYCStatus, apiURL } from '../../../services/user/authService';
+import SubmitKYCFirstPage from '../auth/SubmitKYCFirstPage';
+
 
 
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -29,8 +31,12 @@ const CropsPage = () => {
     const [openDialog, setOpenDialog] = useState(false);
     const [openAddDialog, setOpenAddDialog] = useState(false);
     const { SnackbarComponent, showSnackbar } = useSnackbar();
-    const theme = createTheme();  
+    const theme = createTheme();
+    const kycStatus = checkKYCStatus();
 
+    if (kycStatus !== 'approved') {
+      return <SubmitKYCFirstPage />;
+    }
 
     const toggleSidebar = () => {
       setSidebarOpen(!sidebarOpen);

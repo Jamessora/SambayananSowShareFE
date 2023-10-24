@@ -23,6 +23,7 @@ import StorefrontIcon from '@mui/icons-material/Storefront';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import YardIcon from '@mui/icons-material/Yard';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;
@@ -103,6 +104,7 @@ export default function UserSidebar(props) {
     { text: 'Market', icon: <StorefrontIcon />, path: '/market' },
     { text: 'Crops', icon: <YardIcon />, path: '/crops' },
     { text: 'Transactions', icon: <ReceiptLongIcon />, path: '/transactions' },
+    { text: 'Profile', icon: <AccountCircleIcon />, path: '/profile' },
   ];
 
   const handleDrawerOpen = () => {

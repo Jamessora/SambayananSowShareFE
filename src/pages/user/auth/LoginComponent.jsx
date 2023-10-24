@@ -37,6 +37,14 @@ const LoginComponent = () => {
       if (data.success) {
         console.log("Verification successful: user create success");
         localStorage.setItem('jwt', data.jwt);
+        localStorage.setItem('kyc_status', data.kyc_status);
+        console.log("Storing the KYC Status Token:", data.kyc_status);
+        
+        if (data.user) {
+          console.log("Storing the user details:", data.user);
+          localStorage.setItem('user_details', JSON.stringify(data.user));
+        }
+        
         navigate('/dashboard');
         // Store session/token and navigate to protected route
       } else {
@@ -64,6 +72,12 @@ const LoginComponent = () => {
         // Store JWT token to browser storage
         localStorage.setItem('jwt', data.jwt);
         console.log ("Storing the JWT Token:", data.jwt);
+        localStorage.setItem('kyc_status', data.kyc_status);
+        console.log("Storing the KYC Status Token:", data.kyc_status);
+        if (data.user) {
+          console.log("Storing the user details:", data.user);
+          localStorage.setItem('user_details', JSON.stringify(data.user));
+        }
         navigate('/dashboard');
       } else {
         console.log('Authentication failed:', data.error);

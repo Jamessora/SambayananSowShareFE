@@ -17,9 +17,13 @@ export const apiBaseURL = getApiBaseUrl();
 
 export const apiURL = import.meta.env.VITE_API_BASE_URL;
 
-// export function checkKYCStatus() {
-//   return localStorage.getItem('kyc_status');
-// }
+export function checkKYCStatus() {
+  return localStorage.getItem('kyc_status');
+}
+
+export function userDetails() {
+  return localStorage.getItem('user_details');
+}
 
 
 console.log("API Base URL is: ", import.meta.env.VITE_API_BASE_URL)

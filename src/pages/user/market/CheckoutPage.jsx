@@ -8,7 +8,7 @@ import UserSidebar from '../../../components/UserSidebar';
 
 const CheckoutPage = () => {
 
-    const [isLoading, setIsLoading] = useState(true); // You forgot to include this state variable
+    const [isLoading, setIsLoading] = useState(true); // 
     const [transactionCrops, setTransactionCrops] = useState([]);
     const [transactionId, setTransactionId] = useState(null);
     const inputRef = useRef();

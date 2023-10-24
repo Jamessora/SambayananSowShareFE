@@ -27,7 +27,9 @@ const AdminLoginPage = () => {
             // Store JWT token to browser storage
             if (data.jwt) {
               localStorage.setItem('jwt', data.jwt);
+             
               console.log("Storing the JWT Token:", data.jwt);
+              
             }
             
             navigate('/admin/dashboard');

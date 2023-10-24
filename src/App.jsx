@@ -41,6 +41,7 @@ import AdminUserDetailPage from './pages/admin/AdminUserDetailPage';
 import AdminEditUser from './pages/admin/AdminEditUser';
 import AdminCreateUser from './pages/admin/AdminCreateUser';
 import AdminTransactionDetailPage from './pages/admin/AdminTransactionDetailPage';
+import ProfilePage from './pages/user/UserProfilePage';
 
 
 
@@ -66,6 +67,7 @@ function App() {
     <Route path="/checkout" element={<CheckoutPage/>} />
     <Route path="/order-success/:transactionId" element={<OrderSuccessPage/>} />
     <Route path="/transactions" element={<TransactionsPage/>} />
+    <Route path="/profile" element={<ProfilePage/>} />
 
      {/* Admin Views */}
      <Route path="/admin/signup" element={<AdminSignupPage/>} />
