@@ -19,7 +19,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
   const kycStatus = checkKYCStatus();
-  const [isLoading, setIsLoading] = useState(true);
+  
 
   if (kycStatus !== 'approved') {
     return <SubmitKYCFirstPage />;
@@ -95,9 +95,6 @@ const TransactionsPage = () => {
   useEffect(() => {
     
     const fetchData = async () => {
-      try {
-        setIsLoading(true);
-      
         const userIdFromToken = getUserIdFromToken();
         console.log("userIdFromToken inside useEffect:", userIdFromToken);
         if (userIdFromToken) {
@@ -116,13 +113,6 @@ const TransactionsPage = () => {
         console.log("User ID could not be fetched from token");
       }
      
-    } catch (error) {
-      console.error('Error fetching crop data:', error);
-    } finally {
-      setIsLoading(false); // End loading
-    }
-
-
     };
     fetchData();
   }, []);
@@ -349,9 +339,6 @@ const TransactionsPage = () => {
   return (
     <UserSidebar>
     <div>
-    {isLoading ? 
-          <div><CircularProgress /></div> :
-          <div> 
       <h1>Transactions</h1>
       <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -372,8 +359,6 @@ const TransactionsPage = () => {
           </Box>
         </CustomTabPanel>
       </Box>
-      </div>
-      }
     </div>
     </UserSidebar>
   );
